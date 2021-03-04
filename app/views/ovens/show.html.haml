@@ -1,6 +1,6 @@
 %h3= @oven.name
 
-- if @oven.cookie && @oven.cookie.completed_baking_at
+- if @oven.cookies && @oven.batch_completed_baking_at
   = render partial: 'cookie_info', locals: { oven: @oven }
 - else
   = render_async baking_status_path(id: @oven.id), interval: 5000

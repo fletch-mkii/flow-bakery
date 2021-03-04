@@ -21,8 +21,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   config.before(:each) do
     Kernel.stub(:sleep)
-    OvenWorker.stub(:perform_async) do |cookieId|
-      OvenWorker.new.perform(cookieId)
+    OvenWorker.stub(:perform_async) do |cookieId, oven_id|
+      OvenWorker.new.perform(cookieId, oven_id)
     end
   end
 

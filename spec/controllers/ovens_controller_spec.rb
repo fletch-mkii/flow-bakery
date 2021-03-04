@@ -96,13 +96,15 @@ describe OvensController do
         expect(assigns(:oven)).to eq(oven)
       end
 
-      it "moves the oven's cookie to the user" do
-        cookie = FactoryGirl.create(:cookie, storage: oven)
+      it "moves all of the oven's cookies to the user" do
+        cookie_one = FactoryGirl.create(:cookie, storage: oven)
+        cookie_two = FactoryGirl.create(:cookie, storage: oven)
+        cookie_three = FactoryGirl.create(:cookie, storage: oven)
 
         the_request
 
-        expect(oven.cookie).to be_nil
-        expect(user.stored_cookies.to_a).to match_array([cookie])
+        expect(oven.cookies).to be_empty
+        expect(user.stored_cookies.to_a).to match_array([cookie_one, cookie_two, cookie_three])
       end
 
       context "when requesting someone else's oven" do

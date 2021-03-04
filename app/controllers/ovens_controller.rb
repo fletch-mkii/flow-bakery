@@ -11,8 +11,8 @@ class OvensController < ApplicationController
 
   def empty
     @oven = current_user.ovens.find_by!(id: params[:id])
-    if @oven.cookie
-      @oven.cookie.update_attributes!(storage: current_user)
+    if @oven.cookies
+      @oven.cookies.update_all(storage_id: current_user.id, storage_type: "User")
     end
     redirect_to @oven, alert: 'Oven emptied!'
   end

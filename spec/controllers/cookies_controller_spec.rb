@@ -53,10 +53,12 @@ describe CookiesController do
   end
 
   describe 'POST create' do
+    let(:batch_size) { 12 }
     let(:the_request) { post :create, params: { oven_id: oven.id, cookie: cookie_params } }
     let(:cookie_params) {
       {
         fillings: 'Vanilla',
+        cookie_batch_size: batch_size,
       }
     }
 
@@ -79,12 +81,13 @@ describe CookiesController do
       end
 
       context "when a valid oven is supplied" do
-        it "creates a cookie for that oven" do
+        it "creates the correct number of cookies for that oven" do
           expect {
             the_request
-          }.to change{Cookie.count}.by(1)
+          }.to change{Cookie.count}.by(batch_size)
 
-          expect(Cookie.last.storage).to eq(oven)
+          expect(Cookie.last(12).pluck(:storage_id))
+            .to eq(Array.new(batch_size) { oven.id })
         end
 
         it "redirects to the oven" do
@@ -92,9 +95,10 @@ describe CookiesController do
           expect(response).to redirect_to oven_path(oven)
         end
 
-        it "assigns valid cookie parameters" do
+        it "assigns valid cookie parameters to all cookies" do
           the_request
-          expect(Cookie.last.fillings).to eq(cookie_params[:fillings])
+          expect(Cookie.last(12).pluck(:fillings))
+            .to eq(Array.new(batch_size) { cookie_params[:fillings] })
         end
       end
 
