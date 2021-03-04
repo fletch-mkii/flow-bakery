@@ -49,6 +49,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 
 gem 'sidekiq'
+gem 'render_async'
 
 group :development do
   gem 'selenium-webdriver'

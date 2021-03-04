@@ -16,4 +16,9 @@ class OvensController < ApplicationController
     end
     redirect_to @oven, alert: 'Oven emptied!'
   end
+
+  def baking_status
+    @oven = current_user.ovens.find_by!(id: params[:id])
+    render partial: 'ovens/cookie_info', locals: { oven: @oven }
+  end
 end

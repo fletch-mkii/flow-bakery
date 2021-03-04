@@ -217,6 +217,7 @@ GEM
       ffi (~> 1.0)
     redis (4.1.4)
     regexp_parser (2.1.1)
+    render_async (2.1.9)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -328,6 +329,7 @@ DEPENDENCIES
   rails (~> 5.1.0)
   rails-controller-testing
   redis (~> 4.0)
+  render_async
   rspec-collection_matchers
   rspec-rails
   rspec_junit_formatter
