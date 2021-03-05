@@ -35,6 +35,7 @@ describe CookiesController do
           the_request
 
           cookie = assigns(:cookie)
+
           expect(cookie).to_not be_persisted
           expect(cookie.storage).to eq(oven)
         end
