@@ -11,6 +11,18 @@ describe Cookie do
     it { is_expected.to validate_presence_of(:storage) }
   end
 
+  describe "ready?" do
+    it "returns true when a cookie is marked as completed" do
+      cookie = FactoryGirl.create(:cookie, completed_baking_at: DateTime.current)
+      expect(cookie.ready?).to eq(true)
+    end
+
+    it "returns false when a cookie is not marked as completed" do
+      cookie = FactoryGirl.create(:cookie, completed_baking_at: nil)
+      expect(cookie.ready?).to eq(false)
+    end
+  end
+
   describe "normalize_blank_fillings" do
     it "calls the method before validation" do
       cookie = FactoryGirl.build(:cookie, fillings: "")

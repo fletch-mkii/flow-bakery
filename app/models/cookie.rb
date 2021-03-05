@@ -6,7 +6,7 @@ class Cookie < ActiveRecord::Base
   before_validation :normalize_blank_fillings
 
   def ready?
-    true
+    !!completed_baking_at
   end
 
   def normalize_blank_fillings
