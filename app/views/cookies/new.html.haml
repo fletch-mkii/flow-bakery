@@ -1,12 +1,19 @@
 %h3 New Cookie for oven '#{@oven.name}'
-
 = form_for [@oven, @cookie] do |f|
+
+  .row
+    .small-8.columns
+      = f.label :number_of_cookies_in_batch, id: 'batch_size'
+  .row
+    .small-8.columns
+      = f.number_field :cookie_batch_size, required: true
+
   .row
     .small-8.columns
       = f.label :fillings
   .row
     .small-8.columns
-      = f.text_field :fillings
+      = f.text_field :fillings, required: true
 
   .row
     .small-8.columns

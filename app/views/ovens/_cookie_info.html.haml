@@ -1,9 +1,9 @@
 .cookie-info
   Cookie in oven:
-  - if oven.cookie
-    1 cookie with #{oven.cookie.fillings || "no fillings"}
-    - if oven.cookie.ready?
-      (Your Cookie is Ready)
-      = button_to "Retrieve Cookie", empty_oven_path(id: oven.id), class: 'button tiny'
+  - if !oven.cookies.empty?
+    = "#{oven.cookies.length} cookies with #{oven.batch_fillings || "no fillings"}"
+    - if oven.batch_ready?
+      (Your batch of cookies is Ready)
+      = button_to "Retrieve Cookies", empty_oven_path(id: oven.id), class: 'button tiny'
   - else
     None
