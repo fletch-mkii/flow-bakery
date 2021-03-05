@@ -1,14 +1,9 @@
 %h3= @oven.name
 
-.cookie-info
-  Cookie in oven:
-  - if @oven.cookie
-    1 cookie with #{@oven.cookie.fillings || "no fillings"}
-    - if @oven.cookie.ready?
-      (Your Cookie is Ready)
-      = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
-  - else
-    None
+- if @oven.cookie && @oven.cookie.completed_baking_at
+  = render partial: 'cookie_info', locals: { oven: @oven }
+- else
+  = render_async baking_status_path(id: @oven.id), interval: 5000
 
 %br
 

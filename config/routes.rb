@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   root to: 'visitors#index'
 
+  get :baking_status, controller: :ovens
+
   resources :ovens do
     resource :cookies
     member do
