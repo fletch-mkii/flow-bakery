@@ -1,10 +1,8 @@
-%h3= @oven.name
+%h3{ class: 'oven_show__name' }= @oven.name
 
 - if @oven.cookies && @oven.batch_completed_baking_at
   = render partial: 'cookie_info', locals: { oven: @oven }
 - else
   = render_async baking_status_path(id: @oven.id), interval: 5000
 
-%br
-
-= link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button'
+= link_to "Prepare Cookie", new_oven_cookies_path(@oven), class: 'button oven_show__prepare-cookie'

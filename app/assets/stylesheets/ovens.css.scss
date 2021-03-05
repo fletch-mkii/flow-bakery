@@ -1,3 +1,24 @@
 // Place all the styles related to the ovens controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.oven_show__prepare-cookie {
+    display: flex;
+    justify-content: center;
+    max-width: 300px;
+    order: 1;
+    @media screen and (max-width: 768px) {
+        order: 0
+    }
+}
+
+.oven_show__name {
+    display: flex;
+    order: 1;
+}
+
+.cookie-info {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+}
